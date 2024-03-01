@@ -20,7 +20,12 @@ export const GlobalStyle = createGlobalStyle`
 
     h1, h2, h3, h4, h5, h6 {
         color: ${({ theme }) => theme['base-title'] };
-        font-size: 1rem;
+        font-family: 'Baloo 2', sans-serif;
+    }
+
+    h1 {
+        font-size: 3rem;
+        line-height: 130%;
     }
 
     label {
