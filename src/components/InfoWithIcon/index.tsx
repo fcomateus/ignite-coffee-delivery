@@ -3,15 +3,15 @@ import { Container, IconWrapper } from "./styles";
 
 interface InfoWithIconProps {
     icon: ReactNode
-    backgroundColor: string
+    iconBackgroundColor: string
     children: ReactNode
 }
 
-export function InfoWithIcon({ icon, backgroundColor, children }: InfoWithIconProps) {
+export function InfoWithIcon({ icon, iconBackgroundColor, children }: InfoWithIconProps) {
     return (
         <Container>
             <IconWrapper
-                iconBackgroundColor={backgroundColor}
+                iconbackgroundcolor={iconBackgroundColor}
             >
                 { icon }
             </IconWrapper>

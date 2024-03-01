@@ -31,37 +31,37 @@ export function Banner() {
                     <InfoWithIconWrapper>
                         <InfoWithIcon
                             icon={<ShoppingCart size={iconSize} weight='fill' color={theme['white']}/>}
-                            backgroundColor={theme['yellow-dark']}
+                            iconBackgroundColor={theme['yellow-dark']}
                         >
                             
                             <span>Compra simples e segura</span>
                         </InfoWithIcon>
 
-                        <InfoWithIcon
+                        {/* <InfoWithIcon
                             icon={<Package size={iconSize} weight='fill' color={theme['white']}/>}
                             backgroundColor={theme['base-subtitle']}
                         >
                             
                             <span>Compra simples e segura</span>
-                        </InfoWithIcon>
+                        </InfoWithIcon> */}
                     </InfoWithIconWrapper>
 
                     <InfoWithIconWrapper>
-                        <InfoWithIcon
+                        {/* <InfoWithIcon
                             icon={<Timer size={iconSize} weight='fill' color={theme['white']}/>}
                             backgroundColor={theme['yellow']}
                         >
                             
                             <span>Compra simples e segura</span>
-                        </InfoWithIcon>
+                        </InfoWithIcon> */}
 
-                        <InfoWithIcon
+                        {/* <InfoWithIcon
                             icon={<Coffee size={iconSize} weight='fill' color={theme['white']}/>}
                             backgroundColor={theme['purple']}
                         >
                             
                             <span>Compra simples e segura</span>
-                        </InfoWithIcon>
+                        </InfoWithIcon> */}
                     </InfoWithIconWrapper>
                 </BenefitsPresentation>
 

@@ -9,7 +9,7 @@ export const Container = styled.div`
     max-width: 22rem;
 `
 interface IconWrapperProps {
-    iconBackgroundColor: string
+    iconbackgroundcolor: string
 }
 
 export const IconWrapper = styled.div<IconWrapperProps>`
@@ -22,5 +22,5 @@ export const IconWrapper = styled.div<IconWrapperProps>`
 
     border-radius: 50%;
     
-    background: ${({ iconBackgroundColor }) => iconBackgroundColor};
+    background: ${({ iconbackgroundcolor }) => iconbackgroundcolor};
 `

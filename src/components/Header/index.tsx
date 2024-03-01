@@ -19,7 +19,6 @@ export function Header() {
             const data = await response.json()
             cityName = data.city
             stateAcronym = data.region_code
-            console.log('location data', data);
             
         } catch(error) {
             console.log('Failed to fetch location info', error);
