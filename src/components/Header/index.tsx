@@ -1,6 +1,8 @@
-import { Container } from "./styles";
-import coffeDeliveryLogo from '../../assets/coffee-delivery-logo.png'
 import { useEffect } from "react";
+import { Container, LocaleAndCartWrapper } from "./styles";
+import { LocaleIndicator } from "./components/LocaleIndicator";
+import { Cart } from "./components/Cart";
+import coffeDeliveryLogo from '../../assets/coffee-delivery-logo.png'
 
 export function Header() {
 
@@ -11,19 +13,8 @@ export function Header() {
         fetchLocationInfo()
     }, [])
 
-    // async function getVisitorIP() {
-    //     try {
-    //         const response = await fetch('https://api.ipify.org')
-    //         const visitorIp = await response.text()
-    //         await fetchIPInfo(visitorIp)
-    //     } catch(error) {
-    //         console.log('Failed to fetch IP', error);
-    //     }
-    // }
-
     async function fetchLocationInfo() {
         try {
-            // const response = await fetch(`http://ip-api.com/json/${ip}`)
             const response = await fetch(`https://ipapi.co/json`)
             const data = await response.json()
             cityName = data.city
@@ -38,9 +29,15 @@ export function Header() {
     return (
         <Container>
             <img src={coffeDeliveryLogo} alt="Logo Coffee Delivery" />
-            <hr />
-            <span>{cityName}</span>
-            <span>{stateAcronym}</span>
+
+            <LocaleAndCartWrapper>
+                <LocaleIndicator 
+                    city={cityName}
+                    stateAcronym={stateAcronym}
+                />
+
+                <Cart />
+            </LocaleAndCartWrapper>
         </Container>
     )
 }
