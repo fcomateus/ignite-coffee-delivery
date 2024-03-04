@@ -37,31 +37,31 @@ export function Banner() {
                             <span>Compra simples e segura</span>
                         </InfoWithIcon>
 
-                        {/* <InfoWithIcon
+                        <InfoWithIcon
                             icon={<Package size={iconSize} weight='fill' color={theme['white']}/>}
-                            backgroundColor={theme['base-subtitle']}
+                            iconBackgroundColor={theme['base-subtitle']}
                         >
                             
                             <span>Compra simples e segura</span>
-                        </InfoWithIcon> */}
+                        </InfoWithIcon>
                     </InfoWithIconWrapper>
 
                     <InfoWithIconWrapper>
-                        {/* <InfoWithIcon
+                        <InfoWithIcon
                             icon={<Timer size={iconSize} weight='fill' color={theme['white']}/>}
-                            backgroundColor={theme['yellow']}
+                            iconBackgroundColor={theme['yellow']}
                         >
                             
                             <span>Compra simples e segura</span>
-                        </InfoWithIcon> */}
+                        </InfoWithIcon>
 
-                        {/* <InfoWithIcon
+                        <InfoWithIcon
                             icon={<Coffee size={iconSize} weight='fill' color={theme['white']}/>}
-                            backgroundColor={theme['purple']}
+                            iconBackgroundColor={theme['purple']}
                         >
                             
                             <span>Compra simples e segura</span>
-                        </InfoWithIcon> */}
+                        </InfoWithIcon>
                     </InfoWithIconWrapper>
                 </BenefitsPresentation>
 

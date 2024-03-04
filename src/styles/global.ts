@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
         background-color: ${({ theme }) => theme['background'] };
         color: ${({ theme }) => theme['base-text'] };
         -webkit-font-smoothing: antialiased;
+        padding-bottom: 80px;
     }
 
     body, input, textarea, button {
@@ -30,5 +31,13 @@ export const GlobalStyle = createGlobalStyle`
 
     label {
         color: ${({ theme }) => theme['base-subtitle'] };
+    }
+
+    button {
+        border: none;
+        background: none;
+        cursor: pointer;
+
+        transition: all 200ms;
     }
 `
