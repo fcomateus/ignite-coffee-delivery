@@ -4,6 +4,8 @@ import { LocaleIndicator } from "./components/LocaleIndicator";
 import { Cart } from "./components/Cart";
 import coffeDeliveryLogo from '../../assets/coffee-delivery-logo.png'
 
+import { NavLink } from "react-router-dom";
+
 export function Header() {
 
     let cityName = 'Fortaleza'
@@ -27,7 +29,9 @@ export function Header() {
 
     return (
         <Container>
-            <img src={coffeDeliveryLogo} alt="Logo Coffee Delivery" />
+            <NavLink to='/'>
+                <img src={coffeDeliveryLogo} alt="Logo Coffee Delivery" />
+            </NavLink>
 
             <LocaleAndCartWrapper>
                 <LocaleIndicator 
@@ -35,7 +39,9 @@ export function Header() {
                     stateAcronym={stateAcronym}
                 />
 
-                <Cart />
+                <NavLink to='/checkout'>
+                    <Cart />
+                </NavLink>
             </LocaleAndCartWrapper>
         </Container>
     )
