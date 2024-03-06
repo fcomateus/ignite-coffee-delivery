@@ -16,8 +16,9 @@ import { Plus, Minus, ShoppingCart } from '@phosphor-icons/react'
 
 import coffeeImage from '../../assets/americano.png'
 import { useTheme } from "styled-components";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
+import { CartContext } from "../../contexts/CartContext";
 interface CardProps {
     title: string,
     description: string,
@@ -28,6 +29,8 @@ interface CardProps {
 }
 
 export function Card({ title, description, price, tags, imagePath, imageDescription }: CardProps) {
+
+    const { addToCart, items } = useContext(CartContext)
 
     const [quantity, setQuantity] = useState(1)
 
@@ -51,6 +54,18 @@ export function Card({ title, description, price, tags, imagePath, imageDescript
         if(quantity > 1) {
             setQuantity(state => state - 1)
         }
+    }
+
+    function handleAddToCart() {
+        const item = {
+            title,
+            imagePath,
+            price,
+            quantity
+        }
+        addToCart(item)
+        console.log('items', items);
+        
     }
 
     return (
@@ -94,7 +109,7 @@ export function Card({ title, description, price, tags, imagePath, imageDescript
                         </button>
                     </ButtonControls>
 
-                    <AddToCartButton>
+                    <AddToCartButton onClick={handleAddToCart}>
                         <ShoppingCart weight='fill' color={theme['white']} size={22}/>
                     </AddToCartButton>
 

@@ -1,9 +1,13 @@
 import { Container, QuantityIndicator } from './styles'
 import { ShoppingCart } from '@phosphor-icons/react'
 import { useTheme } from 'styled-components'
+import { useContext } from 'react'
+import { CartContext } from '../../../../contexts/CartContext'
 
 export function Cart() {
     const theme = useTheme()
+
+    const { items } = useContext(CartContext)
 
     return (
         <Container>
@@ -13,9 +17,15 @@ export function Cart() {
                 weight='fill'
             />
 
-            <QuantityIndicator>
-                3
-            </QuantityIndicator>
+            {
+                items.length > 0 ?
+                <QuantityIndicator>
+                    { items.length }
+                </QuantityIndicator>
+                :
+                <></>
+            }
+
         </Container>
     )
 }
