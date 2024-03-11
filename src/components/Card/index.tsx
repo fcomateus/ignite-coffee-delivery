@@ -6,17 +6,17 @@ import {
     PriceAndActionsWrapper,
     PriceWrapper,
     ActionsWrapper,
-    ButtonControls,
     AddToCartButton
 } from "./styles";
 
+import { ControlQuantity } from "../ControlQuantity";
+
 import { Tag } from "../Tag/index";
 
-import { Plus, Minus, ShoppingCart } from '@phosphor-icons/react'
+import { ShoppingCart } from '@phosphor-icons/react'
 
-import coffeeImage from '../../assets/americano.png'
 import { useTheme } from "styled-components";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import { CartContext } from "../../contexts/CartContext";
 interface CardProps {
@@ -36,7 +36,7 @@ export function Card({ title, description, price, tags, imagePath, imageDescript
 
     const theme = useTheme()
 
-    const controlButtonsSize = 16
+    // const controlButtonsSize = 16
 
     const splitedPrice = price.toString().split('.')
     
@@ -64,9 +64,17 @@ export function Card({ title, description, price, tags, imagePath, imageDescript
             quantity
         }
         addToCart(item)
-        console.log('items', items);
         
     }
+
+    useEffect(() => {
+        const coffeeInList = items.find(item => item.title === title)
+
+        if(coffeeInList) {
+            setQuantity(coffeeInList.quantity)
+        }
+
+    }, [items])
 
     return (
         <Container>
@@ -99,16 +107,12 @@ export function Card({ title, description, price, tags, imagePath, imageDescript
                 </PriceWrapper>
 
                 <ActionsWrapper>
-                    <ButtonControls>
-                        <button onClick={handleReduceQuantity}>
-                            <Minus size={controlButtonsSize} color={theme['purple']} />
-                        </button>
-                        <p>{quantity}</p>
-                        <button onClick={handleAddQuantity}>
-                            <Plus size={controlButtonsSize} color={theme['purple']} />
-                        </button>
-                    </ButtonControls>
 
+                    <ControlQuantity 
+                        quantity={quantity}
+                        handleAddQuantity={handleAddQuantity}
+                        handleReduceQuantity={handleReduceQuantity}
+                    />
                     <AddToCartButton onClick={handleAddToCart}>
                         <ShoppingCart weight='fill' color={theme['white']} size={22}/>
                     </AddToCartButton>

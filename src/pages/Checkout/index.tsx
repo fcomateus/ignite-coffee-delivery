@@ -22,7 +22,9 @@ export function Checkout() {
             <div>
                 <h3>Cafés selecionados</h3>
                 <CartPanel>
-                    
+                    <pre>
+                    { JSON.stringify(items) }
+                    </pre>  
                 </CartPanel>
             </div>
         </Container>

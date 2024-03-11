@@ -10,17 +10,32 @@ export function cartReducer(state: CartState, action: any) {
   switch(action.type) {
     case ActionTypes.ADD_TO_CART: {
       console.log('action ADD_TO_CART', action);
-      console.log('state', state);
+
       const isItemInCart = state.items.find(item => item.title === action.payload.item.title)
 
+
       if(isItemInCart) {
-        alert('Item já adicionado ao carrinho')
-        return state
+        
+        const itemsUpdated = state.items.map(item => {
+          const isSameItem = item.title === action.payload.item.title
+          
+          if(isSameItem) {
+            item.quantity = action.payload.item.quantity
+          }
+  
+          return item
+        })
+        
+        return {
+          items: itemsUpdated
+        }
+
+      } else {
+        return {
+          items: [...state.items, action.payload.item]
+        }
       }
 
-      return {
-        items: [...state.items, action.payload.item]
-      }
     }
 
     case ActionTypes.REMOVE_FROM_CART: {

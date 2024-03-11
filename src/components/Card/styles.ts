@@ -72,23 +72,6 @@ export const ActionsWrapper = styled.div`
 
 `
 
-export const ButtonControls = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    padding: 12px 8px;
-
-    border-radius: 6px;
-
-    background: ${({ theme }) => theme['base-button']};
-
-    button:hover svg{
-        fill: ${({ theme }) => theme['purple-dark']};
-    }
-
-`
-
 export const AddToCartButton = styled.button`
     background: ${({ theme }) => theme['purple-dark']};
     padding: 8px;
