@@ -19,6 +19,8 @@ import { useTheme } from "styled-components";
 import { useState, useContext, useEffect } from "react";
 
 import { CartContext } from "../../contexts/CartContext";
+
+import { formatPriceToBRL } from "../../utils";
 interface CardProps {
     title: string,
     description: string,
@@ -36,15 +38,7 @@ export function Card({ title, description, price, tags, imagePath, imageDescript
 
     const theme = useTheme()
 
-    // const controlButtonsSize = 16
-
-    const splitedPrice = price.toString().split('.')
-    
-    const integerPartPrice = splitedPrice[0]
-    const floatPartPrice = splitedPrice[1].padEnd(2, '0')
-
-    const priceFormatted = `${integerPartPrice},${floatPartPrice}`    
-
+    const priceFormatted = formatPriceToBRL(price)
 
     function handleAddQuantity() {
         setQuantity(state => state + 1)
