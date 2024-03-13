@@ -54,6 +54,7 @@ export function Card({ title, description, price, tags, imagePath, imageDescript
         const item = {
             title,
             imagePath,
+            imageDescription,
             price,
             quantity
         }

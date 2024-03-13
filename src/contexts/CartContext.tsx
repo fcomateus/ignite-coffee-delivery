@@ -12,10 +12,10 @@ export interface ItemInCart {
 
 interface CartContextType {
   items: ItemInCart[],
-  addToCart: () => void,
-  removeFromCart: () => void,
-  addUnitWishInCart: () => void,
-  removeUnitWishInCart: () => void
+  addToCart: (item: ItemInCart) => void,
+  removeFromCart: (itemTitle: string) => void,
+  addUnitWishInCart: (itemTitle: string) => void,
+  removeUnitWishInCart: (itemTitle: string) => void
 }
 
 export const CartContext = createContext({} as CartContextType)

@@ -10,40 +10,49 @@ import {
     CoffeeImageWrapper,
     WishDataAndControls,
     WishControls,
-    ButtonRemoveWish
+    ButtonRemoveWish,
+    PriceLabel
 } from "./styles"
 
 import { ControlQuantity } from "../../components/ControlQuantity"
 
 import { useTheme } from "styled-components"
-import { MapPinLine } from "@phosphor-icons/react"
+import { MapPinLine, Trash } from "@phosphor-icons/react"
 import { CartContext } from "../../contexts/CartContext"
 import { useContext } from "react"
 
 import { formatPriceToBRL } from "../../utils"
 
 export function Checkout() {
-        const { 
-            items, 
-            removeFromCart, 
-            addUnitWishInCart, 
-            removeUnitWishInCart 
-        } = useContext(CartContext)
+    const { 
+        items, 
+        removeFromCart, 
+        addUnitWishInCart, 
+        removeUnitWishInCart
+    } = useContext(CartContext)
 
-        const theme = useTheme()
-        const mapPinSize = 22
+    const theme = useTheme()
+    const mapPinSize = 22
+    const deliveryTax = 3.50
 
-        function handleAddUnitInCart(itemTitle: string) {
-            addUnitWishInCart(itemTitle)
-        }
+    function handleAddUnitInCart(itemTitle: string) {
+        console.log('handle add unit');
+        addUnitWishInCart(itemTitle)
+    }
 
-        function handleRemoveUnitInCart(itemTitle: string) {
-            removeUnitWishInCart(itemTitle)
-        }
+    function handleRemoveUnitInCart(itemTitle: string) {
+        console.log('handle remove unit');
+        removeUnitWishInCart(itemTitle)
+    }
 
-        return (
+    function handleRemoveFromCart(itemTitle: string) {
+        console.log('handle remove from cart');
+        removeFromCart(itemTitle)
+    }
+
+    return (
         <Container>
-            <FormWrapper>
+            <FormWrapper> 
                 <h3>Complete seu pedido</h3>
 
                 <FormContainer>
@@ -63,8 +72,9 @@ export function Checkout() {
                 <h3>Cafés selecionados</h3>
                 <CartPanel>
                     {
+                        items.length > 0 ?
                         items.map(item => {
-                            const totalPrice = parseFloat(item.price * item.quantity).toFixed(2)
+                            const totalPrice = parseFloat(parseFloat(item.price * item.quantity).toFixed(2))
                             const formattedPrice = formatPriceToBRL(totalPrice)
 
                             return (
@@ -84,17 +94,25 @@ export function Checkout() {
                                                 handleReduceQuantity={() => handleRemoveUnitInCart(item.title)}
                                             />
                                             
-                                            <ButtonRemoveWish>
+                                            <ButtonRemoveWish
+                                                onClick={() => handleRemoveFromCart(item.title)}
+                                            >
+                                                <Trash 
+                                                    size={mapPinSize}
+                                                    color={theme['purple']}
+                                                />
                                                 Remover
                                             </ButtonRemoveWish>
                                             
                                         </WishControls>
                                     </WishDataAndControls>
                                         
-                                    <h5>R$ {formattedPrice}</h5>
+                                    <PriceLabel>R$ {formattedPrice}</PriceLabel>
                                 </ShowItemInCart>
                             )
                         })
+                        :
+                        'Nada por aqui'
                     }
                 </CartPanel>
             </CartShowWrapper>

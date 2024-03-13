@@ -4,8 +4,8 @@ import { Plus, Minus } from '@phosphor-icons/react'
 
 interface ControlQuantityProps {
   quantity: number,
-  handleAddQuantity: (itemTitle?: string) => void,
-  handleReduceQuantity: (itemTitle?: string) => void
+  handleAddQuantity: () => void,
+  handleReduceQuantity: () => void
 }
 
 export function ControlQuantity({ quantity, handleAddQuantity, handleReduceQuantity }: ControlQuantityProps) {

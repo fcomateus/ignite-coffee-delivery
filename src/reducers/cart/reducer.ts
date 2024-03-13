@@ -40,7 +40,7 @@ export function cartReducer(state: CartState, action: any) {
 
     case ActionTypes.REMOVE_FROM_CART: {
       console.log('action REMOVE_FROM_CART', action);
-      const newItems = state.items.filter(item => item.title === action.payload.title)
+      const newItems = state.items.filter(item => item.title !== action.payload.title)
 
       return {
         items: newItems

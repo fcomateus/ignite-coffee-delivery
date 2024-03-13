@@ -48,11 +48,16 @@ export const CartShowWrapper = styled.div`
 export const CartPanel = styled.aside`
   background-color: ${({ theme }) => theme['base-card']};
 
-  padding: 2.5rem;
+  padding: 1rem 2.5rem;
 `
 
 export const ShowItemInCart = styled.div`
   display: flex;
+  gap: 20px;
+  position: relative;
+
+  padding: 1.5rem 0;
+  border-bottom: 1px solid ${({ theme }) => theme['base-button']};
 `
 
 export const CoffeeImageWrapper = styled.div`
@@ -66,13 +71,40 @@ export const CoffeeImageWrapper = styled.div`
 export const WishDataAndControls = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 8px;
 `
 
 export const WishControls = styled.div`
+  height: 2rem;
   display: flex;
   gap: 8px;
 `
 
 export const ButtonRemoveWish = styled.button`
+  background: ${({ theme }) => theme['base-button']};
+  
+  border-radius: 6px;
+  padding: 6.5px 8px;
 
+  text-transform: uppercase;
+
+  color: ${({ theme }) => theme['base-text']};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  &:hover {
+    background: ${({ theme }) => theme['base-hover']};
+  }
+`
+
+export const PriceLabel = styled.h4`
+  position: absolute;
+  right: 0;
+  top: 1.5rem;
+  color: ${({ theme }) => theme['base-text']};
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
 `
