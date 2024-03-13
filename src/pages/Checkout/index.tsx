@@ -11,7 +11,11 @@ import {
     WishDataAndControls,
     WishControls,
     ButtonRemoveWish,
-    PriceLabel
+    PriceLabel,
+    NoWhishes,
+    ConfirmWish,
+    WishSummary,
+    ConfirmWishButton
 } from "./styles"
 
 import { ControlQuantity } from "../../components/ControlQuantity"
@@ -34,6 +38,14 @@ export function Checkout() {
     const theme = useTheme()
     const mapPinSize = 22
     const deliveryTax = 3.50
+    
+    let totalFromItems = 0
+
+    for(const item of items) {
+        totalFromItems+= item.price
+    }
+
+    const totalToPay = totalFromItems + deliveryTax
 
     function handleAddUnitInCart(itemTitle: string) {
         console.log('handle add unit');
@@ -112,7 +124,36 @@ export function Checkout() {
                             )
                         })
                         :
-                        'Nada por aqui'
+                        <NoWhishes>
+                            Adicione itens ao seu carrinho!
+                        </NoWhishes>
+                    }
+
+                    {
+                        items.length > 0 ?
+                        
+                        <ConfirmWish>
+                            <WishSummary>
+                                <p>Total de itens</p>
+                                <p>R$ {formatPriceToBRL(totalFromItems.toFixed(2))}</p>
+                            </WishSummary>
+
+                            <WishSummary>
+                                <p>Entrega</p>
+                                <p>R$ {formatPriceToBRL(deliveryTax)}</p>
+                            </WishSummary>
+
+                            <WishSummary>
+                                <h3>Total</h3>
+                                <h3>R$ {formatPriceToBRL(totalToPay)}</h3>
+                            </WishSummary>
+
+                            <ConfirmWishButton>
+                                Confirmar pedido
+                            </ConfirmWishButton>
+                        </ConfirmWish>
+                        :
+                        ''
                     }
                 </CartPanel>
             </CartShowWrapper>

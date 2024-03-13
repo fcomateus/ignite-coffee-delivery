@@ -108,3 +108,39 @@ export const PriceLabel = styled.h4`
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
 `
+
+export const NoWhishes = styled.div`
+  text-align: center;
+`
+
+export const ConfirmWish = styled.div`
+  margin-top: 1.5rem;
+`
+
+export const WishSummary = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+
+  h3 {
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+  }
+`
+
+export const ConfirmWishButton = styled.button`
+  background: ${({ theme }) => theme['yellow']};
+
+  text-transform: uppercase;
+  font-weight: bold;
+  color: ${({ theme }) => theme['white']};
+
+  width: 100%;
+  padding: 0.8rem 0;
+
+  border-radius: 6px;
+
+  &:hover {
+  background: ${({ theme }) => theme['yellow-dark']};
+  }
+`
