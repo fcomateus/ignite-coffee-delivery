@@ -14,27 +14,79 @@ export const FormWrapper = styled.main`
 
 `
 
-export const FormContainer = styled.div`
+export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: start;
   gap: 12px;
+
 `
 
-export const Form = styled.form`
+export const Form = styled.div`
+  background-color: ${({ theme }) => theme['base-card']};
+  padding: 2.5rem;
+`
+
+export const PaymentMethodSection = styled.section`
+  padding: 2.5rem;
   background-color: ${({ theme }) => theme['base-card']};
 `
 
 export const PaymentMethod = styled.div`
-  background-color: ${({ theme }) => theme['base-card']};
+  
 `
 
-export const titleWithIcon = styled.div`
+export const PaymentOption = styled.input`
 
 `
 
-export const Input = styled.input`
+export const TitleWithIcon = styled.div`
+  display: flex;
+  gap: 8px;
 
+  margin-bottom: 2rem;
+
+  section {
+    line-height: 130%;
+  }
+  
+  section h6 {
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+  }
+
+  section p {
+    font-size: 0.9rem;
+  }
+`
+
+interface InputStyleProps {
+  gridtemplatearea: "cep" | "street" | "number" | "complement" | "neighboorhood" | "city" | "uf"
+  notification?: string
+}
+
+export const Input = styled.input<InputStyleProps>`
+  grid-area: ${({ gridtemplatearea }) => gridtemplatearea};
+  padding: 12px;
+
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme['base-button']};
+
+  background: ${({ theme }) => theme['base-input']};
+`
+
+export const DeliveryDataSection = styled.section`
+  display: grid;
+  grid-template-areas: 
+  "cep . ."
+  "street street street"
+  "number complement complement"
+  "neighboorhood city uf";
+
+  grid-template-columns: 35% 49% 16%;
+
+  gap: 8px;
 `
 
 export const CartShowWrapper = styled.div`
@@ -141,6 +193,6 @@ export const ConfirmWishButton = styled.button`
   border-radius: 6px;
 
   &:hover {
-  background: ${({ theme }) => theme['yellow-dark']};
+  background: ${({ theme }) => theme['yellow-dark ']};
   }
 `

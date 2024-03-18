@@ -2,7 +2,10 @@ import {
     Container,
     FormWrapper,
     FormContainer,
+    TitleWithIcon,
+    DeliveryDataSection,
     CartShowWrapper,
+    PaymentMethodSection,
     PaymentMethod,
     Form,
     CartPanel,
@@ -15,13 +18,14 @@ import {
     NoWhishes,
     ConfirmWish,
     WishSummary,
-    ConfirmWishButton
+    ConfirmWishButton,
+    Input
 } from "./styles"
 
 import { ControlQuantity } from "../../components/ControlQuantity"
 
 import { useTheme } from "styled-components"
-import { MapPinLine, Trash } from "@phosphor-icons/react"
+import { MapPinLine, Trash, CurrencyDollarSimple } from "@phosphor-icons/react"
 import { CartContext } from "../../contexts/CartContext"
 import { useContext } from "react"
 
@@ -36,7 +40,7 @@ export function Checkout() {
     } = useContext(CartContext)
 
     const theme = useTheme()
-    const mapPinSize = 22
+    const iconSize = 22
     const deliveryTax = 3.50
     
     let totalFromItems = 0
@@ -69,12 +73,74 @@ export function Checkout() {
 
                 <FormContainer>
                     <Form>
-                        aa
+                        <TitleWithIcon>
+                            <MapPinLine 
+                                size={iconSize}
+                                color={theme['yellow-dark']}
+                            />
+
+                            <section>
+                                <h6>Endereço de entrega</h6>
+                                <p>Informe o endereço onde deseja receber seu pedido</p>
+                            </section>
+
+                        </TitleWithIcon>
+
+                        <DeliveryDataSection>
+                            <Input 
+                                placeholder="CEP"
+                                gridtemplatearea="cep"
+                            />
+
+                            <Input 
+                                placeholder="Rua"
+                                gridtemplatearea="street"
+                            />
+
+                            <Input 
+                                placeholder="Número"
+                                gridtemplatearea="number"
+                            />
+
+                            <Input 
+                                placeholder="Complemento"
+                                gridtemplatearea="complement"
+                                notification="Opcional"
+                            />
+
+                            <Input 
+                                placeholder="Bairro"
+                                gridtemplatearea="neighboorhood"
+                            />
+
+                            <Input 
+                                placeholder="Cidade"
+                                gridtemplatearea="city"
+                            />
+
+                            <Input 
+                                placeholder="UF"
+                                gridtemplatearea="uf"
+                            />
+                        </DeliveryDataSection>
+
                     </Form>
 
-                    <PaymentMethod>
-                        aaa
-                    </PaymentMethod>
+
+                    <PaymentMethodSection>
+                        <TitleWithIcon>
+                            <CurrencyDollarSimple 
+                                size={iconSize}
+                                color={theme['purple']}
+                            />
+
+                            <section>
+                                <h6>Endereço de entrega</h6>
+                                <p>Informe o endereço onde deseja receber seu pedido</p>
+                            </section>
+
+                        </TitleWithIcon>
+                    </PaymentMethodSection>
                 </FormContainer>
 
 
@@ -110,7 +176,7 @@ export function Checkout() {
                                                 onClick={() => handleRemoveFromCart(item.title)}
                                             >
                                                 <Trash 
-                                                    size={mapPinSize}
+                                                    size={iconSize}
                                                     color={theme['purple']}
                                                 />
                                                 Remover
