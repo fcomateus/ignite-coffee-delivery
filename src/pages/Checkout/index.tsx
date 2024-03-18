@@ -6,7 +6,9 @@ import {
     DeliveryDataSection,
     CartShowWrapper,
     PaymentMethodSection,
-    PaymentMethod,
+    PaymentOptionWrapper,
+    PaymentOptions,
+    PaymentOption,
     Form,
     CartPanel,
     ShowItemInCart,
@@ -25,7 +27,14 @@ import {
 import { ControlQuantity } from "../../components/ControlQuantity"
 
 import { useTheme } from "styled-components"
-import { MapPinLine, Trash, CurrencyDollarSimple } from "@phosphor-icons/react"
+import { 
+    MapPinLine, 
+    Trash, 
+    CurrencyDollarSimple,
+    CreditCard,
+    Bank,
+    Money
+} from "@phosphor-icons/react"
 import { CartContext } from "../../contexts/CartContext"
 import { useContext } from "react"
 
@@ -140,6 +149,42 @@ export function Checkout() {
                             </section>
 
                         </TitleWithIcon>
+
+                        <PaymentOptions>
+                            <PaymentOptionWrapper>
+                                <PaymentOption type="radio" name="payment-method" id="credit-card"/>
+                                <label htmlFor="credit-card">
+                                    <CreditCard 
+                                        size={iconSize}
+                                        color={theme['purple']}
+                                    />
+                                    Cartão de crédito
+                                </label>
+                            </PaymentOptionWrapper>
+
+                            <PaymentOptionWrapper>
+                                <PaymentOption type="radio" name="payment-method" id="debit-card"/>
+                                <label htmlFor="debit-card">
+                                    <Bank 
+                                        size={iconSize}
+                                        color={theme['purple']}
+                                    />
+                                    Cartão de débito
+                                </label>
+                            </PaymentOptionWrapper>
+
+                            <PaymentOptionWrapper>
+                                <PaymentOption type="radio" name="payment-method" id="money"/>
+                                <label htmlFor="money">
+                                    <Money 
+                                        size={iconSize}
+                                        color={theme['purple']}
+                                    />
+                                    Dinheiro
+                                </label>
+                            </PaymentOptionWrapper>
+                        </PaymentOptions>
+
                     </PaymentMethodSection>
                 </FormContainer>
 

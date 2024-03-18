@@ -32,12 +32,45 @@ export const PaymentMethodSection = styled.section`
   background-color: ${({ theme }) => theme['base-card']};
 `
 
-export const PaymentMethod = styled.div`
-  
+export const PaymentOptions = styled.div`
+  display: flex;
+  gap: 12px;
+`
+
+export const PaymentOptionWrapper = styled.div`
+  background: ${({ theme }) => theme['base-button']};
+  width: 12rem;
+  border-radius: 6px;
+
+  border: 1px solid transparent;
+
+  transition: all 200ms;
+
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 8px;
+
+    padding: 1rem;
+
+    width: 100%;
+    height: 100%;
+
+  }
+
+  &:hover {
+    background: ${({ theme }) => theme['base-hover']};
+  }
+
+  &:has(input[type="radio"]:checked) {
+    border-color: ${({ theme }) => theme['purple']};
+    background: ${({ theme }) => theme['purple-light']};
+  }
 `
 
 export const PaymentOption = styled.input`
-
+  display: none;
 `
 
 export const TitleWithIcon = styled.div`
@@ -74,6 +107,10 @@ export const Input = styled.input<InputStyleProps>`
   border: 1px solid ${({ theme }) => theme['base-button']};
 
   background: ${({ theme }) => theme['base-input']};
+
+  &:focus {
+    outline: 1px solid ${({ theme }) => theme['yellow-dark']};
+  }
 `
 
 export const DeliveryDataSection = styled.section`
