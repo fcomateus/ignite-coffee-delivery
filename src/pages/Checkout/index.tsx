@@ -40,6 +40,13 @@ import { useContext } from "react"
 
 import { formatPriceToBRL } from "../../utils"
 
+import { useForm } from "react-hook-form"
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as zod from 'zod'
+
+
+
 export function Checkout() {
     const { 
         items, 
@@ -47,6 +54,33 @@ export function Checkout() {
         addUnitWishInCart, 
         removeUnitWishInCart
     } = useContext(CartContext)
+
+    const newWishValidationSchema = zod.object({
+        cep: zod.string()
+            .min(8, 'O CEP deve ter 8 dígitos')
+            .max(8, 'O CEP deve ter 8 dígitos'),
+        street: zod.string().min(1, 'Informe a rua'),
+        number: zod.string().min(1, 'Informe o número'),
+        complement: zod.string().optional(),
+        city: zod.string().min(1, 'Informe a cidade'),
+        uf: zod.string()
+            .min(2, 'A Unidade Federativa (UF) é composta por 2 caracteres')
+            .max(2, 'A Unidade Federativa (UF) é composta por 2 caracteres')
+    })
+
+    const { handleSubmit, register } = useForm<newWishFormData>({
+        resolver: zodResolver(newWishValidationSchema),
+        defaultValues: {
+            cep: '',
+            city: '',
+            complement: '',
+            number: '',
+            street: '',
+            uf: ''
+        }
+    })
+
+    type newWishFormData = zod.infer<typeof newWishValidationSchema>
 
     const theme = useTheme()
     const iconSize = 22
@@ -75,12 +109,17 @@ export function Checkout() {
         removeFromCart(itemTitle)
     }
 
+    function handleCreateNewWish(data: newWishFormData) {
+        console.log(data);
+        
+    }
+
     return (
         <Container>
             <FormWrapper> 
                 <h3>Complete seu pedido</h3>
 
-                <FormContainer>
+                <FormContainer onSubmit={handleSubmit(handleCreateNewWish)}>
                     <Form>
                         <TitleWithIcon>
                             <MapPinLine 
@@ -99,37 +138,51 @@ export function Checkout() {
                             <Input 
                                 placeholder="CEP"
                                 gridtemplatearea="cep"
+                                id="cep"
+                                {...register("cep")}
                             />
 
                             <Input 
                                 placeholder="Rua"
                                 gridtemplatearea="street"
+                                id="street"
+                                {...register("street")}
                             />
 
                             <Input 
                                 placeholder="Número"
                                 gridtemplatearea="number"
+                                id="number"
+                                {...register("number")}
                             />
 
                             <Input 
                                 placeholder="Complemento"
                                 gridtemplatearea="complement"
                                 notification="Opcional"
+                                id="complement"
+                                {...register("complement")}
                             />
 
                             <Input 
                                 placeholder="Bairro"
                                 gridtemplatearea="neighboorhood"
+                                id="neighboorhood"
+                                {...register("neighboorhood")}
                             />
 
                             <Input 
                                 placeholder="Cidade"
                                 gridtemplatearea="city"
+                                id="city"
+                                {...register("city")}
                             />
 
                             <Input 
                                 placeholder="UF"
                                 gridtemplatearea="uf"
+                                id="uf"
+                                {...register("uf")}
                             />
                         </DeliveryDataSection>
 
