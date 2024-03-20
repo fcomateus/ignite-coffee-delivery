@@ -62,21 +62,25 @@ export function Checkout() {
         street: zod.string().min(1, 'Informe a rua'),
         number: zod.string().min(1, 'Informe o número'),
         complement: zod.string().optional(),
+        neighboorhood: zod.string().min(1, 'Informe o bairro'),
         city: zod.string().min(1, 'Informe a cidade'),
         uf: zod.string()
             .min(2, 'A Unidade Federativa (UF) é composta por 2 caracteres')
-            .max(2, 'A Unidade Federativa (UF) é composta por 2 caracteres')
+            .max(2, 'A Unidade Federativa (UF) é composta por 2 caracteres'),
+        paymentMethod: zod.string().min(1, 'Escolha uma forma de pagamento')
     })
 
-    const { handleSubmit, register } = useForm<newWishFormData>({
+    const { handleSubmit, register, formState: { errors } } = useForm<newWishFormData>({
         resolver: zodResolver(newWishValidationSchema),
         defaultValues: {
             cep: '',
-            city: '',
-            complement: '',
-            number: '',
             street: '',
-            uf: ''
+            number: '',
+            complement: '',
+            neighboorhood: '',
+            city: '',
+            uf: '',
+            paymentMethod: ''
         }
     })
 
@@ -110,16 +114,23 @@ export function Checkout() {
     }
 
     function handleCreateNewWish(data: newWishFormData) {
+        console.log('chamou handle form');
+        
+        if(errors) {
+            console.log('errors', errors);
+            
+        }
+
         console.log(data);
         
     }
 
     return (
-        <Container>
+        <Container action="" onSubmit={handleSubmit(handleCreateNewWish)}>
             <FormWrapper> 
                 <h3>Complete seu pedido</h3>
 
-                <FormContainer onSubmit={handleSubmit(handleCreateNewWish)}>
+                <FormContainer>
                     <Form>
                         <TitleWithIcon>
                             <MapPinLine 
@@ -141,6 +152,7 @@ export function Checkout() {
                                 id="cep"
                                 {...register("cep")}
                             />
+                            {errors.cep && alert(errors?.cep?.message)}
 
                             <Input 
                                 placeholder="Rua"
@@ -148,6 +160,7 @@ export function Checkout() {
                                 id="street"
                                 {...register("street")}
                             />
+                            {errors.street && alert(errors?.street?.message)}
 
                             <Input 
                                 placeholder="Número"
@@ -155,6 +168,7 @@ export function Checkout() {
                                 id="number"
                                 {...register("number")}
                             />
+                            {errors.number && alert(errors?.number?.message)}
 
                             <Input 
                                 placeholder="Complemento"
@@ -170,6 +184,7 @@ export function Checkout() {
                                 id="neighboorhood"
                                 {...register("neighboorhood")}
                             />
+                            {errors.neighboorhood && alert(errors?.neighboorhood?.message)}
 
                             <Input 
                                 placeholder="Cidade"
@@ -177,6 +192,7 @@ export function Checkout() {
                                 id="city"
                                 {...register("city")}
                             />
+                            {errors.city && alert(errors?.city?.message)}
 
                             <Input 
                                 placeholder="UF"
@@ -184,6 +200,8 @@ export function Checkout() {
                                 id="uf"
                                 {...register("uf")}
                             />
+                            {errors.uf && alert(errors?.uf?.message)}
+
                         </DeliveryDataSection>
 
                     </Form>
@@ -205,7 +223,13 @@ export function Checkout() {
 
                         <PaymentOptions>
                             <PaymentOptionWrapper>
-                                <PaymentOption type="radio" name="payment-method" id="credit-card"/>
+                                <PaymentOption 
+                                    type="radio" 
+                                    name="payment-method" 
+                                    id="credit-card"
+                                    value="credit-card"
+                                    {...register("paymentMethod")}
+                                />
                                 <label htmlFor="credit-card">
                                     <CreditCard 
                                         size={iconSize}
@@ -216,7 +240,13 @@ export function Checkout() {
                             </PaymentOptionWrapper>
 
                             <PaymentOptionWrapper>
-                                <PaymentOption type="radio" name="payment-method" id="debit-card"/>
+                                <PaymentOption 
+                                    type="radio"
+                                    name="payment-method"
+                                    id="debit-card"
+                                    value="debit-card"
+                                    {...register("paymentMethod")}
+                                />
                                 <label htmlFor="debit-card">
                                     <Bank 
                                         size={iconSize}
@@ -227,7 +257,13 @@ export function Checkout() {
                             </PaymentOptionWrapper>
 
                             <PaymentOptionWrapper>
-                                <PaymentOption type="radio" name="payment-method" id="money"/>
+                                <PaymentOption 
+                                    type="radio"
+                                    name="payment-method"
+                                    id="money"
+                                    value="money"
+                                    {...register("paymentMethod")}
+                                />
                                 <label htmlFor="money">
                                     <Money 
                                         size={iconSize}
@@ -236,6 +272,8 @@ export function Checkout() {
                                     Dinheiro
                                 </label>
                             </PaymentOptionWrapper>
+
+                            {errors.paymentMethod && alert(errors?.paymentMethod?.message)}
                         </PaymentOptions>
 
                     </PaymentMethodSection>
