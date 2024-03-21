@@ -1,8 +1,9 @@
 import { ActionTypes } from "./actions";
-import { ItemInCart } from "../../contexts/CartContext";
+import { ItemInCart, AddressData } from "../../contexts/CartContext";
 
 interface CartState {
-  items: ItemInCart[]
+  items: ItemInCart[],
+  address: AddressData,
 }
 
 export function cartReducer(state: CartState, action: any) {
@@ -32,6 +33,7 @@ export function cartReducer(state: CartState, action: any) {
 
       } else {
         return {
+          ...state,
           items: [...state.items, action.payload.item]
         }
       }
@@ -43,6 +45,7 @@ export function cartReducer(state: CartState, action: any) {
       const newItems = state.items.filter(item => item.title !== action.payload.title)
 
       return {
+        ...state,
         items: newItems
       }
       
@@ -59,6 +62,7 @@ export function cartReducer(state: CartState, action: any) {
       })
 
       return {
+        ...state,
         items: newItems
       }
 
@@ -74,7 +78,17 @@ export function cartReducer(state: CartState, action: any) {
       })
       
       return {
+        ...state,
         items: newItems
+      }
+    }
+
+    case ActionTypes.ADD_ADDRESS_TO_WISH: {
+      console.log('action ADD_ADDRESS_TO_WISH', action);
+      
+      return {
+        ...state,
+        address: action.payload.addressData
       }
     }
 

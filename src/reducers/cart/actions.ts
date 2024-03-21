@@ -1,10 +1,11 @@
-import { ItemInCart } from '../../contexts/CartContext'
+import { ItemInCart, AddressData } from '../../contexts/CartContext'
 
 export enum ActionTypes {
   ADD_TO_CART = 'ADD_TO_CART',
   REMOVE_FROM_CART = 'REMOVE_FROM_CART',
   ADD_UNIT_WISH_IN_CART = 'ADD_UNIT_WISH_IN_CART',
-  REMOVE_UNIT_WISH_IN_CART = 'REMOVE_UNIT_WISH_IN_CART'
+  REMOVE_UNIT_WISH_IN_CART = 'REMOVE_UNIT_WISH_IN_CART',
+  ADD_ADDRESS_TO_WISH = 'ADD_ADDRESS_TO_WISH'
 }
 
 export function addToCartAction(item: ItemInCart) {
@@ -41,6 +42,15 @@ export function removeUnitWishInCartAction(title: string) {
     type: ActionTypes.REMOVE_UNIT_WISH_IN_CART,
     payload: {
       title
+    }
+  }
+}
+
+export function addAddressToWishAction(addressData: AddressData) {
+  return {
+    type: ActionTypes.ADD_ADDRESS_TO_WISH,
+    payload: {
+      addressData
     }
   }
 }

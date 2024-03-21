@@ -45,6 +45,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as zod from 'zod'
 
+import { useNavigate } from "react-router-dom"
 
 
 export function Checkout() {
@@ -52,7 +53,8 @@ export function Checkout() {
         items, 
         removeFromCart, 
         addUnitWishInCart, 
-        removeUnitWishInCart
+        removeUnitWishInCart,
+        addAddressToWish
     } = useContext(CartContext)
 
     const newWishValidationSchema = zod.object({
@@ -86,6 +88,8 @@ export function Checkout() {
 
     type newWishFormData = zod.infer<typeof newWishValidationSchema>
 
+    const navigate = useNavigate()
+
     const theme = useTheme()
     const iconSize = 22
     const deliveryTax = 3.50
@@ -114,15 +118,8 @@ export function Checkout() {
     }
 
     function handleCreateNewWish(data: newWishFormData) {
-        console.log('chamou handle form');
-        
-        if(errors) {
-            console.log('errors', errors);
-            
-        }
-
-        console.log(data);
-        
+        addAddressToWish(data)
+        navigate('/success')
     }
 
     return (
